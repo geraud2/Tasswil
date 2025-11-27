@@ -3,9 +3,10 @@ import { Package, Search, MapPin, Clock, Shield, Truck, ArrowRight, Sparkles, Pl
 
 interface HomePageProps {
   onTrack: (code: string) => void;
+  onNavigate: (page: 'services' | 'pricing' | 'contact') => void;
 }
 
-function HomePage({ onTrack }: HomePageProps) {
+function HomePage({ onTrack, onNavigate }: HomePageProps) {
   const [trackingCode, setTrackingCode] = useState('');
   const [isPlaying, setIsPlaying] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,8 +19,7 @@ function HomePage({ onTrack }: HomePageProps) {
   };
 
   const handleGetStarted = () => {
-    // Redirige vers le login quand on clique sur "Commencer"
-    onTrack(''); // On passe une chaîne vide pour déclencher la redirection
+    onTrack('');
   };
 
   // Background animation élégante
@@ -151,16 +151,27 @@ function HomePage({ onTrack }: HomePageProps) {
               </div>
               
               <div className="hidden md:flex items-center space-x-8">
-                {['Accueil', 'Services', 'Tarifs', 'Contact'].map((item) => (
-                  <a 
-                    key={item}
-                    href="#" 
-                    className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium relative group"
-                  >
-                    {item}
-                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f44d0b] group-hover:w-full transition-all duration-300"></div>
-                  </a>
-                ))}
+                <button 
+                  onClick={() => onNavigate('services')}
+                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium relative group"
+                >
+                  Services
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f44d0b] group-hover:w-full transition-all duration-300"></div>
+                </button>
+                <button 
+                  onClick={() => onNavigate('pricing')}
+                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium relative group"
+                >
+                  Tarifs
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f44d0b] group-hover:w-full transition-all duration-300"></div>
+                </button>
+                <button 
+                  onClick={() => onNavigate('contact')}
+                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium relative group"
+                >
+                  Contact
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f44d0b] group-hover:w-full transition-all duration-300"></div>
+                </button>
               </div>
 
               <button 
