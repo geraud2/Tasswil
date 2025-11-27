@@ -184,17 +184,15 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
           </div>
         </nav>
 
-        {/* Hero Section */}
+        {/* Le reste du HomePage reste identique */}
         <section className="relative py-20">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center space-y-8">
-              {/* Badge */}
               <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 border border-orange-200 shadow-sm">
                 <Sparkles className="w-4 h-4 text-[#f44d0b]" />
                 <span className="text-sm text-gray-600">Service de livraison premium</span>
               </div>
 
-              {/* Main Heading */}
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
                 Livraison
                 <span className="block text-[#f44d0b]">sans compromis</span>
@@ -205,7 +203,6 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
                 avec une simplicité d'utilisation remarquable.
               </p>
 
-              {/* Tracking Form */}
               <div className="max-w-2xl mx-auto">
                 <div className="bg-white rounded-2xl p-8 shadow-lg border border-orange-100">
                   <div className="flex items-center space-x-3 mb-6">
@@ -242,7 +239,6 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
                 </div>
               </div>
 
-              {/* Stats */}
               <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-8">
                 {[
                   { number: "50K+", label: "Colis livrés" },
@@ -259,7 +255,6 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
           </div>
         </section>
 
-        {/* Features Section */}
         <section className="py-20 bg-white/50 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
@@ -293,7 +288,6 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-20">
           <div className="max-w-4xl mx-auto text-center px-4">
             <div className="bg-white rounded-2xl p-12 shadow-lg border border-orange-100">
@@ -311,7 +305,10 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
                   <span>Commencer maintenant</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="border border-gray-300 text-gray-700 px-8 py-3.5 rounded-xl font-semibold hover:border-gray-400 transition-colors">
+                <button 
+                  onClick={() => onNavigate('pricing')}
+                  className="border border-gray-300 text-gray-700 px-8 py-3.5 rounded-xl font-semibold hover:border-gray-400 transition-colors"
+                >
                   Voir les tarifs
                 </button>
               </div>
@@ -319,7 +316,6 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="bg-white border-t border-orange-100 py-12">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -339,16 +335,16 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-4">Services</h4>
                 <ul className="space-y-2 text-gray-600">
-                  <li className="hover:text-[#f44d0b] cursor-pointer transition-colors">Livraison Express</li>
-                  <li className="hover:text-[#f44d0b] cursor-pointer transition-colors">Suivi Colis</li>
-                  <li className="hover:text-[#f44d0b] cursor-pointer transition-colors">Service Entreprise</li>
+                  <li><button onClick={() => onNavigate('services')} className="hover:text-[#f44d0b] transition-colors">Livraison Express</button></li>
+                  <li><button onClick={() => onNavigate('services')} className="hover:text-[#f44d0b] transition-colors">Suivi Colis</button></li>
+                  <li><button onClick={() => onNavigate('services')} className="hover:text-[#f44d0b] transition-colors">Service Entreprise</button></li>
                 </ul>
               </div>
               
               <div>
                 <h4 className="font-semibold text-gray-900 mb-4">Contact</h4>
                 <ul className="space-y-2 text-gray-600">
-                  <li>contact@taswwiligo.ma</li>
+                  <li><button onClick={() => onNavigate('contact')} className="hover:text-[#f44d0b] transition-colors">contact@taswwiligo.ma</button></li>
                   <li>+212 5 20 30 40 50</li>
                   <li>Casablanca, Maroc</li>
                 </ul>
