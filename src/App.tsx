@@ -1,0 +1,87 @@
+import { useState } from 'react';
+import HomePage from './components/HomePage';
+import TrackingResults from './components/TrackingResults';
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
+import ForgotPasswordPage from './components/ForgotPasswordPage';
+
+type AppState = 'home' | 'tracking' | 'login' | 'signup' | 'forgot-password';
+
+function App() {
+  const [trackingCode, setTrackingCode] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<AppState>('home');
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  const handleTrack = (code: string) => {
+    setTrackingCode(code);
+    if (isAuthenticated) {
+      setCurrentPage('tracking');
+    } else {
+      setCurrentPage('login');
+    }
+  };
+
+  const handleReset = () => {
+    setTrackingCode('');
+    setCurrentPage('home');
+  };
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    setCurrentPage('tracking');
+  };
+
+  const handleSignup = () => {
+    setIsAuthenticated(true);
+    setCurrentPage('tracking');
+  };
+
+  // Page de tracking
+  if (currentPage === 'tracking') {
+    return (
+      <TrackingResults 
+        trackingCode={trackingCode} 
+        onReset={handleReset}
+      />
+    );
+  }
+
+  // Page de login
+  if (currentPage === 'login') {
+    return (
+      <LoginPage
+        onLogin={handleLogin}
+        onSwitchToSignup={() => setCurrentPage('signup')}
+        onForgotPassword={() => setCurrentPage('forgot-password')}
+      />
+    );
+  }
+
+  // Page d'inscription
+  if (currentPage === 'signup') {
+    return (
+      <SignupPage
+        onSignup={handleSignup}
+        onSwitchToLogin={() => setCurrentPage('login')}
+      />
+    );
+  }
+
+  // Page mot de passe oublié
+  if (currentPage === 'forgot-password') {
+    return (
+      <ForgotPasswordPage
+        onBackToLogin={() => setCurrentPage('login')}
+      />
+    );
+  }
+
+  // Page d'accueil par défaut
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
+      <HomePage onTrack={handleTrack} />
+    </div>
+  );
+}
+
+export default App;
