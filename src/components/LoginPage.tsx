@@ -5,9 +5,10 @@ interface LoginPageProps {
   onLogin: () => void;
   onSwitchToSignup: () => void;
   onForgotPassword: () => void;
+  onBackToHome: () => void;
 }
 
-export default function LoginPage({ onLogin, onSwitchToSignup, onForgotPassword }: LoginPageProps) {
+export default function LoginPage({ onLogin, onSwitchToSignup, onForgotPassword, onBackToHome }: LoginPageProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -132,6 +133,16 @@ export default function LoginPage({ onLogin, onSwitchToSignup, onForgotPassword 
                 Créer un compte
               </button>
             </div>
+          </div>
+
+          {/* Lien retour accueil */}
+          <div className="mt-4 text-center">
+            <button
+              onClick={onBackToHome}
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+            >
+              ← Retour à l'accueil
+            </button>
           </div>
         </div>
       </div>

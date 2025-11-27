@@ -3,9 +3,10 @@ import { Package, Mail, ArrowLeft, CheckCircle } from 'lucide-react';
 
 interface ForgotPasswordPageProps {
   onBackToLogin: () => void;
+  onBackToHome: () => void;
 }
 
-export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordPageProps) {
+export default function ForgotPasswordPage({ onBackToLogin, onBackToHome }: ForgotPasswordPageProps) {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSent, setIsSent] = useState(false);
@@ -39,6 +40,12 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordPage
               className="w-full bg-[#f44d0b] text-white py-3.5 px-6 rounded-xl font-semibold hover:bg-[#e0450a] transition-colors"
             >
               Retour à la connexion
+            </button>
+            <button
+              onClick={onBackToHome}
+              className="w-full mt-4 border border-gray-300 text-gray-700 py-3.5 px-6 rounded-xl font-semibold hover:border-gray-400 transition-colors"
+            >
+              Retour à l'accueil
             </button>
           </div>
         </div>
@@ -102,14 +109,20 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordPage
             </button>
           </form>
 
-          {/* Lien retour */}
-          <div className="mt-6 text-center">
+          {/* Liens retour */}
+          <div className="mt-6 space-y-3 text-center">
             <button
               onClick={onBackToLogin}
               className="text-sm text-gray-600 hover:text-[#f44d0b] transition-colors flex items-center justify-center space-x-2 mx-auto"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Retour à la connexion</span>
+            </button>
+            <button
+              onClick={onBackToHome}
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+            >
+              ← Retour à l'accueil
             </button>
           </div>
         </div>

@@ -4,8 +4,11 @@ import TrackingResults from './components/TrackingResults';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
+import ServicesPage from './components/ServicesPage';
+import PricingPage from './components/PricingPage';
+import ContactPage from './components/ContactPage';
 
-type AppState = 'home' | 'tracking' | 'login' | 'signup' | 'forgot-password';
+type AppState = 'home' | 'tracking' | 'login' | 'signup' | 'forgot-password' | 'services' | 'pricing' | 'contact';
 
 function App() {
   const [trackingCode, setTrackingCode] = useState<string>('');
@@ -53,6 +56,7 @@ function App() {
         onLogin={handleLogin}
         onSwitchToSignup={() => setCurrentPage('signup')}
         onForgotPassword={() => setCurrentPage('forgot-password')}
+        onBackToHome={() => setCurrentPage('home')}
       />
     );
   }
@@ -63,6 +67,7 @@ function App() {
       <SignupPage
         onSignup={handleSignup}
         onSwitchToLogin={() => setCurrentPage('login')}
+        onBackToHome={() => setCurrentPage('home')}
       />
     );
   }
@@ -72,14 +77,39 @@ function App() {
     return (
       <ForgotPasswordPage
         onBackToLogin={() => setCurrentPage('login')}
+        onBackToHome={() => setCurrentPage('home')}
       />
+    );
+  }
+
+  // Page services
+  if (currentPage === 'services') {
+    return (
+      <ServicesPage onBackToHome={() => setCurrentPage('home')} />
+    );
+  }
+
+  // Page tarifs
+  if (currentPage === 'pricing') {
+    return (
+      <PricingPage onBackToHome={() => setCurrentPage('home')} />
+    );
+  }
+
+  // Page contact
+  if (currentPage === 'contact') {
+    return (
+      <ContactPage onBackToHome={() => setCurrentPage('home')} />
     );
   }
 
   // Page d'accueil par défaut
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
-      <HomePage onTrack={handleTrack} />
+      <HomePage 
+        onTrack={handleTrack} 
+        onNavigate={(page: AppState) => setCurrentPage(page)}
+      />
     </div>
   );
 }

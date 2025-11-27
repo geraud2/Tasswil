@@ -4,9 +4,10 @@ import { Package, User, Lock, Mail, Phone, MapPin, ArrowLeft, Eye, EyeOff } from
 interface SignupPageProps {
   onSignup: () => void;
   onSwitchToLogin: () => void;
+  onBackToHome: () => void;
 }
 
-export default function SignupPage({ onSignup, onSwitchToLogin }: SignupPageProps) {
+export default function SignupPage({ onSignup, onSwitchToLogin, onBackToHome }: SignupPageProps) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -246,6 +247,16 @@ export default function SignupPage({ onSignup, onSwitchToLogin }: SignupPageProp
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Déjà un compte ? Se connecter</span>
+            </button>
+          </div>
+
+          {/* Lien retour accueil */}
+          <div className="mt-4 text-center">
+            <button
+              onClick={onBackToHome}
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+            >
+              ← Retour à l'accueil
             </button>
           </div>
         </div>
