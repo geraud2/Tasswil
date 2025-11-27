@@ -22,7 +22,7 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
     onTrack('');
   };
 
-  // Background animation élégante
+  // Background animation équilibré
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -47,7 +47,8 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
       color: string;
     }> = [];
 
-    const colors = ['#f44d0b20', '#ff6b3520', '#ff8e5320'];
+    // Équilibre entre les deux couleurs
+    const colors = ['#24647520', '#f44d0b20'];
 
     for (let i = 0; i < 40; i++) {
       particles.push({
@@ -68,7 +69,7 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
         return;
       }
 
-      ctx.fillStyle = 'rgba(255, 253, 250, 0.02)';
+      ctx.fillStyle = 'rgba(248, 250, 252, 0.02)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle) => {
@@ -101,27 +102,31 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
     {
       icon: MapPin,
       title: "Live Tracking",
-      description: "Suivi GPS en temps réel avec précision"
+      description: "Suivi GPS en temps réel avec précision",
+      color: "#f44d0b"
     },
     {
       icon: Clock,
       title: "Notifications Smart",
-      description: "Alertes personnalisées à chaque étape"
+      description: "Alertes personnalisées à chaque étape",
+      color: "#246475"
     },
     {
       icon: Shield,
       title: "Sécurité Totale",
-      description: "Vos colis protégés de A à Z"
+      description: "Vos colis protégés de A à Z",
+      color: "#f44d0b"
     },
     {
       icon: Truck,
       title: "Livraison Express",
-      description: "Service rapide dans tout le Maroc"
+      description: "Service rapide dans tout le Maroc",
+      color: "#246475"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Animated Background */}
       <canvas
         ref={canvasRef}
@@ -132,51 +137,50 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
       {/* Play/Pause Animation */}
       <button
         onClick={() => setIsPlaying(!isPlaying)}
-        className="fixed top-6 right-6 z-50 bg-white/80 backdrop-blur-sm p-3 rounded-full hover:bg-white transition-colors border border-orange-200 shadow-sm"
+        className="fixed top-6 right-6 z-50 bg-white/80 backdrop-blur-sm p-3 rounded-full hover:bg-white transition-colors border border-gray-200 shadow-sm"
       >
-        {isPlaying ? <Pause className="w-4 h-4 text-orange-600" /> : <Play className="w-4 h-4 text-orange-600" />}
+        {isPlaying ? <Pause className="w-4 h-4 text-[#246475]" /> : <Play className="w-4 h-4 text-[#246475]" />}
       </button>
 
       {/* Main Content */}
       <div className="relative z-10">
-        {/* Navigation */}
-        <nav className="relative bg-white/80 backdrop-blur-md border-b border-orange-100">
-          <div className="max-w-7xl mx-auto px-4 py-5">
+        {/* Navigation équilibrée */}
+        <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="bg-[#f44d0b] p-2 rounded-xl shadow-sm">
+                <div className="bg-[#246475] p-2 rounded-xl">
                   <Package className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-2xl font-semibold text-gray-800">Taswwiligo</span>
+                <span className="text-2xl font-bold text-[#246475]">
+                  Taswwiligo
+                </span>
               </div>
               
               <div className="hidden md:flex items-center space-x-8">
                 <button 
                   onClick={() => onNavigate('services')}
-                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium relative group"
+                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium"
                 >
                   Services
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f44d0b] group-hover:w-full transition-all duration-300"></div>
                 </button>
                 <button 
                   onClick={() => onNavigate('pricing')}
-                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium relative group"
+                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium"
                 >
                   Tarifs
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f44d0b] group-hover:w-full transition-all duration-300"></div>
                 </button>
                 <button 
                   onClick={() => onNavigate('contact')}
-                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium relative group"
+                  className="text-gray-600 hover:text-[#f44d0b] transition-colors font-medium"
                 >
                   Contact
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f44d0b] group-hover:w-full transition-all duration-300"></div>
                 </button>
               </div>
 
               <button 
                 onClick={handleGetStarted}
-                className="bg-[#f44d0b] text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-[#e0450a] transition-colors shadow-sm"
+                className="bg-[#f44d0b] text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-[#e3440a] transition-colors"
               >
                 Commencer
               </button>
@@ -184,18 +188,20 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
           </div>
         </nav>
 
-        {/* Le reste du HomePage reste identique */}
+        {/* Hero Section */}
         <section className="relative py-20">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center space-y-8">
-              <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 border border-orange-200 shadow-sm">
+              {/* Badge */}
+              <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 border border-gray-200 shadow-sm">
                 <Sparkles className="w-4 h-4 text-[#f44d0b]" />
                 <span className="text-sm text-gray-600">Service de livraison premium</span>
               </div>
 
+              {/* Main Heading */}
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
                 Livraison
-                <span className="block text-[#f44d0b]">sans compromis</span>
+                <span className="block text-[#246475]">sans compromis</span>
               </h1>
 
               <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -203,10 +209,11 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
                 avec une simplicité d'utilisation remarquable.
               </p>
 
+              {/* Tracking Form */}
               <div className="max-w-2xl mx-auto">
-                <div className="bg-white rounded-2xl p-8 shadow-lg border border-orange-100">
+                <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
                   <div className="flex items-center space-x-3 mb-6">
-                    <div className="bg-[#f44d0b] p-2 rounded-lg">
+                    <div className="bg-[#246475] p-2 rounded-lg">
                       <Search className="w-5 h-5 text-white" />
                     </div>
                     <h2 className="text-2xl font-semibold text-gray-900">Suivre un colis</h2>
@@ -228,7 +235,7 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
                         <button
                           type="submit"
                           disabled={!trackingCode.trim()}
-                          className="bg-[#f44d0b] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#e0450a] disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center space-x-2 shadow-sm"
+                          className="bg-[#f44d0b] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#e3440a] disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
                         >
                           <Search className="w-4 h-4" />
                           <span>Suivre</span>
@@ -239,6 +246,7 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
                 </div>
               </div>
 
+              {/* Stats */}
               <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-8">
                 {[
                   { number: "50K+", label: "Colis livrés" },
@@ -246,7 +254,7 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
                   { number: "24h", label: "Livraison express" }
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-2xl font-bold text-gray-900">{stat.number}</div>
+                    <div className="text-2xl font-bold text-[#246475]">{stat.number}</div>
                     <div className="text-gray-600 text-sm">{stat.label}</div>
                   </div>
                 ))}
@@ -255,12 +263,13 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
           </div>
         </section>
 
-        <section className="py-20 bg-white/50 backdrop-blur-sm">
+        {/* Features Section */}
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Des fonctionnalités{' '}
-                <span className="text-[#f44d0b]">exceptionnelles</span>
+                <span className="text-[#246475]">exceptionnelles</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Tout ce dont vous avez besoin pour une expérience de livraison parfaite
@@ -271,10 +280,13 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
               {features.map((feature, index) => (
                 <div 
                   key={index}
-                  className="group bg-white rounded-2xl p-6 border border-orange-100 hover:border-[#f44d0b] transition-all duration-300 hover:shadow-lg"
+                  className="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-[#f44d0b] transition-all duration-300"
                 >
-                  <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#f44d0b] transition-colors">
-                    <feature.icon className="w-6 h-6 text-[#f44d0b] group-hover:text-white transition-colors" />
+                  <div 
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: feature.color }}
+                  >
+                    <feature.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     {feature.title}
@@ -288,9 +300,10 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
           </div>
         </section>
 
-        <section className="py-20">
+        {/* CTA Section */}
+        <section className="py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center px-4">
-            <div className="bg-white rounded-2xl p-12 shadow-lg border border-orange-100">
+            <div className="bg-white rounded-2xl p-12 shadow-lg border border-gray-200">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Prêt à simplifier vos livraisons ?
               </h2>
@@ -300,14 +313,14 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={handleGetStarted}
-                  className="bg-[#f44d0b] text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-[#e0450a] transition-colors flex items-center justify-center space-x-2 shadow-sm"
+                  className="bg-[#f44d0b] text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-[#e3440a] transition-colors flex items-center justify-center space-x-2"
                 >
                   <span>Commencer maintenant</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <button 
                   onClick={() => onNavigate('pricing')}
-                  className="border border-gray-300 text-gray-700 px-8 py-3.5 rounded-xl font-semibold hover:border-gray-400 transition-colors"
+                  className="border border-gray-300 text-gray-700 px-8 py-3.5 rounded-xl font-semibold hover:border-[#246475] hover:text-[#246475] transition-colors"
                 >
                   Voir les tarifs
                 </button>
@@ -316,42 +329,43 @@ function HomePage({ onTrack, onNavigate }: HomePageProps) {
           </div>
         </section>
 
-        <footer className="bg-white border-t border-orange-100 py-12">
+        {/* Footer */}
+        <footer className="bg-[#246475] text-white py-16">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="md:col-span-2">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="bg-[#f44d0b] p-2 rounded-xl">
+                  <div className="bg-white/20 p-2 rounded-xl">
                     <Package className="w-6 h-6 text-white" />
                   </div>
-                  <span className="text-2xl font-semibold text-gray-800">Taswwiligo</span>
+                  <span className="text-2xl font-bold">Taswwiligo</span>
                 </div>
-                <p className="text-gray-600 mb-6 max-w-md">
+                <p className="text-white/80 mb-6 max-w-md text-lg leading-relaxed">
                   Votre partenaire de confiance pour une expérience de livraison 
                   moderne et fiable au Maroc.
                 </p>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-900 mb-4">Services</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li><button onClick={() => onNavigate('services')} className="hover:text-[#f44d0b] transition-colors">Livraison Express</button></li>
-                  <li><button onClick={() => onNavigate('services')} className="hover:text-[#f44d0b] transition-colors">Suivi Colis</button></li>
-                  <li><button onClick={() => onNavigate('services')} className="hover:text-[#f44d0b] transition-colors">Service Entreprise</button></li>
+                <h4 className="font-bold text-lg mb-4">Services</h4>
+                <ul className="space-y-2 text-white/80">
+                  <li><button onClick={() => onNavigate('services')} className="hover:text-white transition-colors">Livraison Express</button></li>
+                  <li><button onClick={() => onNavigate('services')} className="hover:text-white transition-colors">Suivi Colis</button></li>
+                  <li><button onClick={() => onNavigate('services')} className="hover:text-white transition-colors">Service Entreprise</button></li>
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-900 mb-4">Contact</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li><button onClick={() => onNavigate('contact')} className="hover:text-[#f44d0b] transition-colors">contact@taswwiligo.ma</button></li>
+                <h4 className="font-bold text-lg mb-4">Contact</h4>
+                <ul className="space-y-2 text-white/80">
+                  <li><button onClick={() => onNavigate('contact')} className="hover:text-white transition-colors">contact@taswwiligo.ma</button></li>
                   <li>+212 5 20 30 40 50</li>
                   <li>Casablanca, Maroc</li>
                 </ul>
               </div>
             </div>
             
-            <div className="border-t border-gray-200 mt-12 pt-8 text-center text-gray-500">
+            <div className="border-t border-white/20 mt-12 pt-8 text-center text-white/60">
               <p>© 2024 Taswwiligo. Tous droits réservés.</p>
             </div>
           </div>
