@@ -5,10 +5,10 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
 import ServicesPage from './components/ServicesPage';
-import PricingPage from './components/PricingPage';
+import AboutPage from './components/AboutPage'; // Changé de PricingPage à AboutPage
 import ContactPage from './components/ContactPage';
 
-type AppState = 'home' | 'tracking' | 'login' | 'signup' | 'forgot-password' | 'services' | 'pricing' | 'contact';
+type AppState = 'home' | 'tracking' | 'login' | 'signup' | 'forgot-password' | 'services' | 'about' | 'contact'; // Changé 'pricing' en 'about'
 
 function App() {
   const [trackingCode, setTrackingCode] = useState<string>('');
@@ -89,10 +89,10 @@ function App() {
     );
   }
 
-  // Page tarifs
-  if (currentPage === 'pricing') {
+  // Page À propos (remplace tarifs)
+  if (currentPage === 'about') {
     return (
-      <PricingPage onBackToHome={() => setCurrentPage('home')} />
+      <AboutPage onBackToHome={() => setCurrentPage('home')} />
     );
   }
 
@@ -105,10 +105,10 @@ function App() {
 
   // Page d'accueil par défaut
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
+    <div className="min-h-screen bg-white">
       <HomePage 
         onTrack={handleTrack} 
-        onNavigate={(page: AppState) => setCurrentPage(page)}
+        onNavigate={(page) => setCurrentPage(page as AppState)}
       />
     </div>
   );
